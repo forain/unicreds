@@ -11,7 +11,7 @@ import (
 	"github.com/apex/log/handlers/cli"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/stretchr/testify/assert"
-	"github.com/versent/unicreds"
+	"github.com/forain/unicreds"
 )
 
 func init() {
