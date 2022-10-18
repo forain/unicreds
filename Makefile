@@ -1,6 +1,6 @@
 NAME=unicreds
 ARCH=$(shell uname -m)
-VERSION=1.7.0
+VERSION=1.7.1
 GO15VENDOREXPERIMENT := 1
 ITERATION := 1
 
@@ -16,6 +16,9 @@ compile:
 	-osarch="darwin/amd64" \
 	-osarch="linux/amd64" \
 	-osarch="windows/amd64" \
+	-osarch="darwin/arm64" \
+	-osarch="linux/arm64" \
+	-osarch="windows/arm64" \
 	-output "build/{{.Dir}}_$(VERSION)_{{.OS}}_{{.Arch}}/$(NAME)" \
 	./...
 
@@ -36,7 +39,7 @@ release: dist
 	comparison="$$latest_tag..HEAD"; \
 	if [ -z "$$latest_tag" ]; then comparison=""; fi; \
 	changelog=$$(git log $$comparison --oneline --no-merges --reverse); \
-	$(GOPATH)/bin/github-release versent/$(NAME) $(VERSION) "$$(git rev-parse --abbrev-ref HEAD)" "**Changelog**<br/>$$changelog" 'dist/*'; \
+	$(GOPATH)/bin/github-release forain/$(NAME) $(VERSION) "$$(git rev-parse --abbrev-ref HEAD)" "**Changelog**<br/>$$changelog" 'dist/*'; \
 	git pull
 
 deps:
